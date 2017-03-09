@@ -1,7 +1,14 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user'])){
-	echo '<script language="javascript">alert("Anda harus Login!"); document.location="../../index.php";</script>';
+//cek apakah user sudah login
+if(!isset($_SESSION['username'])){
+    die("Anda belum login");//
+}
+
+//cek level user
+if($_SESSION['level']!="user")
+{
+    die("Anda bukan user");
 }
 ?>

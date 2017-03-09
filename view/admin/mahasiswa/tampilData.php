@@ -24,7 +24,7 @@
                                      $extensi = explode(".", $_FILES['foto']['name']);
                                      $foto = "mhs-".round(microtime(true)).".".end($extensi);
                                      $sumber = $_FILES['foto']['tmp_name'];
-                                     $upload = move_uploaded_file($sumber, "../config/foto/".$foto);
+                                     $upload = move_uploaded_file($sumber, "../../config/foto/".$foto);
                                      if ($upload) {
                                        $mhs->tambah($nim, $nama, $ttl, $alamat, $ipk, $jdl, $tlpn, $email, $dosbing1, $dosbing2,    $thn, $foto);
                                        header("location: ?page=tampilData");
@@ -34,6 +34,7 @@
                                   }
 
     ?>
+        <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
             Mahasiswa
@@ -44,6 +45,8 @@
                 <li class="disable"><a>Lihat Data</a></li>
             </ol>
         </section>
+
+        <!-- Main content -->
         <section class="content">
 
             <div class="col-xs-12">
@@ -54,221 +57,7 @@
                             <a href="#" data-toggle="modal" data-target="#tambah"><span class="fa fa-plus"></span> Tambah Data</a>
                         </div>
                     </div>
-                    <!-- Modal Tambah -->
-                    <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title text-center" id="myModalLabel">Tambah Biodata Mahasiswa</h4>
-                                </div>
-                                <form method="post" action="" role="form" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                        <div class="col-lg- col-md-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="nim">NIM</label>
-                                                <input type="text" name="nim" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nama">Nama</label>
-                                                <input type="text" class="form-control" required name="nama">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="ttl">Tanggal Lahir</label>
-                                                <input type="text" class="form-control" id="ttl" name="ttl" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="alamat">Alamat</label>
-                                                <textarea name="alamat" id="alamat" cols="61" rows="4"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="ipk">IPK</label>
-                                                <input type="text" class="form-control" name="ipk" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="jdl">Judul Skripsi</label>
-                                                <textarea name="jdl" id="jdl" cols="61" rows="4"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="tlpn">No Telpon</label>
-                                                <input type="text" class="form-control" id="tlpn" name="tlpn" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">E-Mail</label>
-                                                <input type="email" class="form-control" id="email" name="email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="dosbing1">Pembimbing I</label>
-                                                <input type="text" class="form-control" name="dosbing1" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="dosbing2">Pembimbing II</label>
-                                                <input type="text" class="form-control" name="dosbing2">
-                                                <div class="">
-                                                    <p class="help-block text-red">*Diisi Jika Ada</p>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="tahun">Tahun Pengajuan</label>
-                                                <input type="number" class="form-control" name="thn" id="thn" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-xs-8 pull-left">
-                                                    <label for="foto">Foto</label>
-                                                    <input type="file" id="foto" name="foto">
-                                                    <p class="help-block">1.Ukuran Foto 3x4.</p>
-                                                    <p class="help-block">2.Ukuran Maksimal 2 Mb.</p>
-                                                    <p class="help-block">3.Foto Formal.</p>
-                                                </div>
-                                                <div class="col-xs-4 pull-right">
-                                                    <div class="box-header"></div>
-                                                    <img src="" id="gambar_preview" alt="Preview Gambar" height="170" width="120" />
-                                                    <script type="text/javascript" src="../../assets/plugins/jQuery/jquery-3.1.1.min.js"></script>
-                                                    <script type="application/javascript">
-                                                        function bacaGambar(input) {
-                                                            if (input.files && input.files[0]) {
-                                                                var reader = new FileReader();
 
-                                                                reader.onload = function (e) {
-                                                                    $('#gambar_preview').attr('src', e.target.result);
-                                                                }
-
-                                                                reader.readAsDataURL(input.files[0]);
-                                                            }
-                                                        }
-                                                        $("#foto").change(function () {
-                                                            bacaGambar(this);
-                                                        });
-                                                    </script>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="submit" class="btn btn-primary" id="simpan" name="simpan">Simpan</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Modal -->
-
-                    <!-- Modal Edit -->
-                    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title text-center" id="myModalLabel">Edit Biodata Mahasiswa</h4>
-                                </div>
-                                <form id="form" enctype="multipart/form-data">
-                                    <div class="modal-body" id="modal-edit">
-                                        <div class="col-lg- col-md-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="nim">NIM</label>
-                                                <input type="text" id="nim" name="nim" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nama">Nama</label>
-                                                <input type="text" class="form-control" required id="nama" name="nama">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="ttl">Tanggal Lahir</label>
-                                                <input type="text" class="form-control" id="ttl" name="ttl" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="alamat">Alamat</label>
-                                                <textarea name="alamat" id="alamat" cols="61" rows="4"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="ipk">IPK</label>
-                                                <input type="text" class="form-control" id="ipk" name="ipk" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="jdl">Judul Skripsi</label>
-                                                <textarea name="jdl" id="jdl" cols="61" rows="4"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="tlpn">No Telpon</label>
-                                                <input type="text" class="form-control" id="tlpn" name="tlpn" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">E-Mail</label>
-                                                <input type="email" class="form-control" id="email" name="email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="dosbing1">Pembimbing I</label>
-                                                <input type="text" class="form-control" id="dosbing1" name="dosbing1" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="dosbing2">Pembimbing II</label>
-                                                <input type="text" class="form-control" id="dosbing2" name="dosbing2">
-                                                <div class="">
-                                                    <p class="help-block text-red">*Diisi Jika Ada</p>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="tahun">Tahun Pengajuan</label>
-                                                <input type="number" class="form-control" name="thn" id="thn" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-xs-8 pull-left">
-                                                    <label for="foto">Foto</label>
-                                                    <input type="file" id="foto" name="foto">
-                                                    <p class="help-block">1.Ukuran Foto 3x4.</p>
-                                                    <p class="help-block">2.Ukuran Maksimal 2 Mb.</p>
-                                                    <p class="help-block">3.Foto Formal.</p>
-                                                </div>
-                                                <div class="col-xs-4 pull-right">
-                                                    <div class="box-header"></div>
-                                                    <img src="" id="gambar_preview" alt="Preview Gambar" height="170" width="120" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button type="submit" class="btn btn-primary" id="edit" name="edit">Simpan</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Modal -->
-                    <script type="text/javascript" src="../../assets/plugins/jQuery/jquery-3.1.1.min.js"></script>
-                    <script type="text/javascript">
-                        $(document).on("click", "#edit_mhs", function () {
-                            var nim = $(this).data('nim');
-                            var nama = $(this).data('nama');
-                            var ttl = $(this).data('ttl');
-                            var alamat = $(this).data('alamat');
-                            var ipk = $(this).data('ipk');
-                            var jdl = $(this).data('judul_skripsi');
-                            var noTlpn = $(this).data('tlpn');
-                            var email = $(this).data('email');
-                            var pem1 = $(this).data('dosbing1');
-                            var pem2 = $(this).data('dosbing2');
-                            var tahun = $(this).data('tahun');
-                            var foto = $(this).data('foto');
-                            $("#modal-edit #nim").val(nim);
-                            $("#modal-edit #nama").val(nama);
-                            $("#modal-edit #ttl").val(ttl);
-                            $("#modal-edit #alamat").val(alamat);
-                            $("#modal-edit #ipk").val(ipk);
-                            $("#modal-edit #jdl").val(jdl);
-                            $("#modal-edit #tlpn").val(noTlpn);
-                            $("#modal-edit #email").val(email);
-                            $("#modal-edit #dosbing1").val(dosbing1);
-                            $("#modal-edit #dosbing2").val(dosbing2);
-                            $("#modal-edit #thn").val(tahun);
-                            $("#modal-edit #gambar_preview").attr("src", "../../config/foto/" + foto);
-                        })
-                    </script>
 
                     <div class="box-body">
                         <div class="table-responsive">
@@ -360,4 +149,222 @@
                     </div>
                 </div>
             </div>
+
         </section>
+        <!-- /.content -->
+
+        <!-- Modal Tambah -->
+        <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Tambah Biodata Mahasiswa</h4>
+                    </div>
+                    <form method="post" action="" role="form" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="col-lg- col-md-6 col-xs-6">
+                                <div class="form-group">
+                                    <label for="nim">NIM</label>
+                                    <input type="text" name="nim" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" required name="nama">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ttl">Tanggal Lahir</label>
+                                    <input type="text" class="form-control" id="ttl" name="ttl" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <textarea class="form-control" name="alamat" id="alamat" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ipk">IPK</label>
+                                    <input type="text" class="form-control" name="ipk" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jdl">Judul Skripsi</label>
+                                    <textarea class="form-control" name="jdl" id="jdl" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-6">
+                                <div class="form-group">
+                                    <label for="tlpn">No Telpon</label>
+                                    <input type="text" class="form-control" id="tlpn" name="tlpn" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-Mail</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dosbing1">Pembimbing I</label>
+                                    <input type="text" class="form-control" name="dosbing1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dosbing2">Pembimbing II</label>
+                                    <input type="text" class="form-control" name="dosbing2">
+                                    <div class="">
+                                        <p class="help-block text-red">*Diisi Jika Ada</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tahun">Tahun Pengajuan</label>
+                                    <input type="text" class="form-control" name="thn" id="thn" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-8 pull-left">
+                                        <label for="foto">Foto</label>
+                                        <input class="form-control" type="file" id="foto" name="foto">
+                                        <p class="help-block">1.Ukuran Foto 3x4.</p>
+                                        <p class="help-block">2.Ukuran Maksimal 2 Mb.</p>
+                                        <p class="help-block">3.Foto Formal.</p>
+                                    </div>
+                                    <div class="col-xs-4 pull-right">
+                                        <div class="box-header"></div>
+                                        <img src="" id="gambar_preview" alt="Preview Gambar" height="170" width="120" />
+                                        <script type="text/javascript" src="../../assets/plugins/jQuery/jquery-3.1.1.min.js"></script>
+                                        <script type="application/javascript">
+                                            function bacaGambar(input) {
+                                                if (input.files && input.files[0]) {
+                                                    var reader = new FileReader();
+
+                                                    reader.onload = function (e) {
+                                                        $('#gambar_preview').attr('src', e.target.result);
+                                                    }
+
+                                                    reader.readAsDataURL(input.files[0]);
+                                                }
+                                            }
+                                            $("#foto").change(function () {
+                                                bacaGambar(this);
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" id="simpan" name="simpan">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        <!-- Modal Edit -->
+        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Edit Biodata Mahasiswa</h4>
+                    </div>
+                    <form id="form" enctype="multipart/form-data">
+                        <div class="modal-body" id="modal-edit">
+                            <div class="col-lg- col-md-6 col-xs-6">
+                                <div class="form-group">
+                                    <label for="nim">NIM</label>
+                                    <input type="text" id="nim" name="nim" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" required id="nama" name="nama">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ttl">Tanggal Lahir</label>
+                                    <input type="text" class="form-control" id="ttl" name="ttl" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <textarea class="form-control" name="alamat" id="alamat" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ipk">IPK</label>
+                                    <input type="text" class="form-control" id="ipk" name="ipk" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jdl">Judul Skripsi</label>
+                                    <textarea class="form-control" name="jdl" id="jdl" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-6">
+                                <div class="form-group">
+                                    <label for="tlpn">No Telpon</label>
+                                    <input type="text" class="form-control" id="tlpn" name="tlpn" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-Mail</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dosbing1">Pembimbing I</label>
+                                    <input type="text" class="form-control" id="dosbing1" name="dosbing1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dosbing2">Pembimbing II</label>
+                                    <input type="text" class="form-control" id="dosbing2" name="dosbing2">
+                                    <div class="">
+                                        <p class="help-block text-red">*Diisi Jika Ada</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tahun">Tahun Pengajuan</label>
+                                    <input type="text" class="form-control" name="thn" id="thn" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-8 pull-left">
+                                        <label for="foto">Foto</label>
+                                        <input class="form-control" type="file" id="foto" name="foto">
+                                        <p class="help-block">1.Ukuran Foto 3x4.</p>
+                                        <p class="help-block">2.Ukuran Maksimal 2 Mb.</p>
+                                        <p class="help-block">3.Foto Formal.</p>
+                                    </div>
+                                    <div class="col-xs-4 pull-right">
+                                        <div class="box-header"></div>
+                                        <img src="" id="gambar_preview" alt="Preview Gambar" height="170" width="120" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" id="edit" name="edit">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+        <script type="text/javascript" src="../../assets/plugins/jQuery/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).on("click", "#edit_mhs", function () {
+                var nim = $(this).data('nim');
+                var nama = $(this).data('nama');
+                var ttl = $(this).data('ttl');
+                var alamat = $(this).data('alamat');
+                var ipk = $(this).data('ipk');
+                var jdl = $(this).data('judul_skripsi');
+                var noTlpn = $(this).data('tlpn');
+                var email = $(this).data('email');
+                var pem1 = $(this).data('dosbing1');
+                var pem2 = $(this).data('dosbing2');
+                var tahun = $(this).data('tahun');
+                var foto = $(this).data('foto');
+                $("#modal-edit #nim").val(nim);
+                $("#modal-edit #nama").val(nama);
+                $("#modal-edit #ttl").val(ttl);
+                $("#modal-edit #alamat").val(alamat);
+                $("#modal-edit #ipk").val(ipk);
+                $("#modal-edit #jdl").val(jdl);
+                $("#modal-edit #tlpn").val(noTlpn);
+                $("#modal-edit #email").val(email);
+                $("#modal-edit #dosbing1").val(dosbing1);
+                $("#modal-edit #dosbing2").val(dosbing2);
+                $("#modal-edit #thn").val(tahun);
+                $("#modal-edit #gambar_preview").attr("src", "../../config/foto/" + foto);
+            })
+        </script>

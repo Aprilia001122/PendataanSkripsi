@@ -1,6 +1,6 @@
 <?php
 ob_start();
-//include('akses.php');
+include('akses.php');
 require_once('../../config/koneksi.php');
 require_once('../../model/database.php');
 $connection = new Database($host,$user,$pass,$database);

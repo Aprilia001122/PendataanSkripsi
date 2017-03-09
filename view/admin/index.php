@@ -1,6 +1,6 @@
 <?php
 ob_start();
-// include('akses.php');
+include('akses.php');
 require_once('../../config/koneksi.php');
 require_once('../../model/database.php');
 $connection = new Database($host,$user,$pass,$database);
@@ -30,7 +30,7 @@ $connection = new Database($host,$user,$pass,$database);
         </style>
     </head>
 
-    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+
 
     <body class="hold-transition skin-blue layout-top-nav">
         <div class="wrapper">
@@ -44,7 +44,7 @@ $connection = new Database($host,$user,$pass,$database);
                             </button>
                         </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
+
                         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
@@ -64,8 +64,7 @@ $connection = new Database($host,$user,$pass,$database);
 
                             </ul>
                         </div>
-                        <!-- /.navbar-collapse -->
-                        <!-- Navbar Right Menu -->
+
                         <div class="navbar-custom-menu">
                             <ul class="nav navbar-nav">
                                 <!-- User Account Menu -->
@@ -82,7 +81,8 @@ $connection = new Database($host,$user,$pass,$database);
                 </nav>
             </header>
             <div class="content-wrapper">
-                <?php
+                <div class="container-fluid">
+                    <?php
 		$pages_dir = 'mahasiswa';
 		if(!empty($_GET['p'])){
 			$pages = scandir($pages_dir, 0);
@@ -96,11 +96,14 @@ $connection = new Database($host,$user,$pass,$database);
 			}
 		}
 		?>
-            </div>
+                </div>
 
+            </div>
             <footer class="main-footer">
-                <div class="container text-center">
-                    Copyright <a href="">STMIK Bumigora Mataram</a>
+                <div class="container">
+                    <div class="text-center">
+                        Copyright <a href="">STMIK Bumigora Mataram</a>
+                    </div>
                 </div>
             </footer>
         </div>
@@ -115,17 +118,18 @@ $connection = new Database($host,$user,$pass,$database);
         <script type="text/javascript" src="../../assets/dist/js/app.min.js"></script>
         <script type="text/javascript" src="../../assets/plugins/fastclick/fastclick.min.js"></script>
         <script type="text/javascript" src="../../assets/plugins/swal/sweetalert.min.js"></script>
+        <script type="text/javascript" src="../../assets/dist/js/demo.js"></script>
 
         <script>
             $(document).ready(function () {
                 var table = $('#myTable').DataTable({
-                    scrollY: "500px",
+                    scrollY: 200,
                     scrollX: true,
                     scrollCollapse: true,
                     paging: true,
                     "autoWidth": true,
                     fixedColumns: {
-                        leftColumns: 3
+                        leftColumns: 2
                     }
                 });
             });
