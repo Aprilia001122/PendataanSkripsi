@@ -114,6 +114,7 @@ $connection = new Database($host,$user,$pass,$database);
         <script>
             $(document).ready(function () {
                 var table = $('#myTable').DataTable({
+
                     scrollY: 200,
                     scrollX: true,
                     scrollCollapse: true,
