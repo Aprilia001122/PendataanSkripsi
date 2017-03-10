@@ -25,6 +25,11 @@
             $db->query("DELETE FROM mahasiswa WHERE nim = '$nim'") or die ($db->error);
         }
         
+        public function edit($sql){
+        $db = $this->mysqli->conn;
+            $sb->query($sql) or die ($db->error);
+        }
+        
         function __destruct(){
             $db = $this->mysqli->conn;
             $db->close();
