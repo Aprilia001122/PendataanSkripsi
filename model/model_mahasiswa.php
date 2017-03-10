@@ -20,5 +20,15 @@
       $db->query("INSERT INTO mahasiswa VALUES ('$nim', '$nama', '$ttl', '$alamat', '$ipk', '$judul_skripsi', '$tlpn', '$email', '$pem1', '$pem2', '$thn', '$foto')") or die ($db->error);
     }
 
+        public function hapus($nim){
+        $db = $this->mysqli->conn;
+            $db->query("DELETE FROM mahasiswa WHERE nim = '$nim'") or die ($db->error);
+        }
+        
+        function __destruct(){
+            $db = $this->mysqli->conn;
+            $db->close();
+        }
+            
     }
 ?>
