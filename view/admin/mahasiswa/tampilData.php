@@ -1,10 +1,8 @@
 <?php
-
     include "../../model/model_mahasiswa.php";
-
     $mhs = new Mahasiswa($connection);
-
-     ?>
+//    if (@S_GET['act'] == ''){
+?>
 
     <?php
 
@@ -57,8 +55,6 @@
                             <a href="#" data-toggle="modal" data-target="#tambah"><span class="fa fa-plus"></span> Tambah Data</a>
                         </div>
                     </div>
-
-
                     <div class="box-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="myTable">
@@ -132,10 +128,10 @@
 
                                             <td style=".btn {border-radius:0px;}">
                                                 <a href="" class="btn btn-sm btn-info" title="Detail" data-toggle="modal" data-target="detail"><span class="fa fa-eye"></span></a>
-                                                <a href="" id="edit_mhs" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-primary" data-nim="<?php echo $data->nim; ?>" data-nama="<?php echo $data->nama; ?>" data-ttl="<?php echo $data->ttl; ?>" data-alamat="<?php echo $data->alamat; ?>" data-ipk="<?php echo $data->ipk; ?>" data-judul_skripsi="<?php echo $data->judul_skripsi; ?>" data-noTlpn="<?php echo $data->noTlpn; ?>" data-email="<?php echo $data->email; ?>" data-pem1="<?php echo $data->pem1; ?>" data-pem2="<?php echo $data->pem2; ?>" data-tahun="<?php echo $data->tahun; ?>" data-foto="<?php echo $data->foto; ?>" title="Update">
+                                                <a href="" id="edit_mhs" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-primary" data-nim="<?php echo $data->nim; ?>" data-nama="<?php echo $data->nama; ?>" data-ttl="<?php echo $data->ttl; ?>" data-alamat="<?php echo $data->alamat; ?>" data-ipk="<?php echo $data->ipk; ?>" data-judul_skripsi="<?php echo $data->judul_skripsi; ?>" data-notlpn="<?php echo $data->noTlpn; ?>" data-email="<?php echo $data->email; ?>" data-pempertama="<?php echo $data->pem1; ?>" data-pemkedua="<?php echo $data->pem2; ?>" data-tahun="<?php echo $data->tahun; ?>" data-foto="<?php echo $data->foto; ?>" title="Update">
                                                     <span class="fa fa-pencil"></span>
                                                 </a>
-                                                <a href="" class="btn btn-sm btn-danger" title="Hapus"><span class="fa fa-trash"></span></a>
+                                                <a href="?p=tampilData&act=del&nim=<?php echo $data->nim; ?>" onclick="return confirm('Yakin Ingin Menghapus Data <?php echo $data->nama ?>');" class="btn btn-sm btn-danger" title="Hapus"><span class="fa fa-trash"></span></a>
                                             </td>
                                         </tr>
                                         <?php
@@ -149,7 +145,6 @@
                     </div>
                 </div>
             </div>
-
         </section>
         <!-- /.content -->
 
@@ -293,20 +288,20 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-xs-6">
                                 <div class="form-group">
-                                    <label for="tlpn">No Telpon</label>
-                                    <input type="text" class="form-control" id="tlpn" name="tlpn" required>
+                                    <label for="noTlpn">No Telpon</label>
+                                    <input type="text" class="form-control" id="noTlpn" name="noTlpn" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">E-Mail</label>
                                     <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dosbing1">Pembimbing I</label>
-                                    <input type="text" class="form-control" id="dosbing1" name="dosbing1" required>
+                                    <label for="pempertama">Pembimbing I</label>
+                                    <input type="text" class="form-control" id="pempertama" name="pempertama" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dosbing2">Pembimbing II</label>
-                                    <input type="text" class="form-control" id="dosbing2" name="dosbing2">
+                                    <label for="pemkedua">Pembimbing II</label>
+                                    <input type="text" class="form-control" id="pemkedua" name="pemkedua">
                                     <div class="">
                                         <p class="help-block text-red">*Diisi Jika Ada</p>
                                     </div>
@@ -342,29 +337,39 @@
         <script type="text/javascript" src="../../assets/plugins/jQuery/jquery-3.1.1.min.js"></script>
         <script type="text/javascript">
             $(document).on("click", "#edit_mhs", function () {
-                var nim = $(this).data('nim');
-                var nama = $(this).data('nama');
-                var ttl = $(this).data('ttl');
-                var alamat = $(this).data('alamat');
-                var ipk = $(this).data('ipk');
-                var jdl = $(this).data('judul_skripsi');
-                var noTlpn = $(this).data('tlpn');
-                var email = $(this).data('email');
-                var pem1 = $(this).data('dosbing1');
-                var pem2 = $(this).data('dosbing2');
-                var tahun = $(this).data('tahun');
-                var foto = $(this).data('foto');
+                var nim = $(this).data('nim'),
+                    nama = $(this).data('nama'),
+                    ttl = $(this).data('ttl'),
+                    alamat = $(this).data('alamat'),
+                    ipk = $(this).data('ipk'),
+                    jdl = $(this).data('judul_skripsi'),
+                    notlpn = $(this).data('notlpn'),
+                    email = $(this).data('email'),
+                    pempertama = $(this).data('pempertama'),
+                    pemkedua = $(this).data('pemkedua'),
+                    tahun = $(this).data('tahun'),
+                    foto = $(this).data('foto');
                 $("#modal-edit #nim").val(nim);
                 $("#modal-edit #nama").val(nama);
                 $("#modal-edit #ttl").val(ttl);
                 $("#modal-edit #alamat").val(alamat);
                 $("#modal-edit #ipk").val(ipk);
                 $("#modal-edit #jdl").val(jdl);
-                $("#modal-edit #tlpn").val(noTlpn);
+                $("#modal-edit #noTlpn").val(notlpn);
                 $("#modal-edit #email").val(email);
-                $("#modal-edit #dosbing1").val(dosbing1);
-                $("#modal-edit #dosbing2").val(dosbing2);
+                $("#modal-edit #pempertama").val(pempertama);
+                $("#modal-edit #pemkedua").val(pemkedua);
                 $("#modal-edit #thn").val(tahun);
                 $("#modal-edit #gambar_preview").attr("src", "../../config/foto/" + foto);
             })
         </script>
+
+
+        <!--    <?php
+//            } else if(@_GET['act'] == 'del'){
+//            $gbr_awal = $mhs->tampil($_GET['nim'])->fetch_oject()->foto; 
+//                unlink("../config/foto/".$gbr_awal);
+//                $mhs->hapus($_GET['nim']);
+//                header("location: ?p=tampilData");
+//  }
+?> -->

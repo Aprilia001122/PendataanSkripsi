@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include('akses.php');
+//include('akses.php');
 require_once('../../config/koneksi.php');
 require_once('../../model/database.php');
 $connection = new Database($host,$user,$pass,$database);
@@ -53,15 +53,6 @@ $connection = new Database($host,$user,$pass,$database);
                                         <li><a href="?p=tampilData"><span class="fa fa-table"></span> Lihat Data</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tahun Pengajuan</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Tahun 2017</a>
-                                        </li>
-                                        <li><a href="#">Tahun 2018</a></li>
-                                    </ul>
-                                </li>
-
                             </ul>
                         </div>
 

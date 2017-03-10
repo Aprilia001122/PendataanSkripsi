@@ -7,7 +7,7 @@ include "model/database.php";
 if(isset($_POST['login']))
 {               
     $username   = $_POST['username'];
-    $password   = $_POST['password'];
+    $password   = md5($_POST['password']);
     
                     
     $query = mysqli_query($connection, "SELECT * FROM users WHERE username='$username' AND password='$password'");
@@ -25,7 +25,7 @@ if(isset($_POST['login']))
         {
             header("Location: /view/mahasiswa/index.php");
         }
-        else if($row['level'] =="user")
+        else if($row['level'] == "user")
         {
             header("Location: /view/user/index.php");
         }
