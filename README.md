@@ -1,4 +1,4 @@
-# PendataanSkripsi
+# pendataanSkripsi
 
 Aplikasi Ini Memilki Tujuan Utama Untuk Pendataan Mahasiswa Yang Akan Melaksanakan Skripsi..
 Aplikasi Ini Sendiri Masih Dalam <strong>Tahap Pengembangan</strong>.
